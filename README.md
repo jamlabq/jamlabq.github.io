@@ -1,6 +1,6 @@
 # jamlab — 把好奇心，折腾成真。
 
-jamlab 首页的首版可交互原型。奶油白的实验室里有机械臂、示波器、探测小车，角落里有一台厚重的未来核心机。包含并列的 LearnEverything 与 Data Lab 入口、后续项目位置和实验室介绍。
+jamlab 首页的首版可交互原型。奶油白的实验室里有机械臂、示波器、探测小车，角落里有一台厚重的未来核心机。包含 LearnEverything、Data Lab 与小小实验室入口、后续项目位置和实验室介绍。
 
 ## 本地预览
 
@@ -60,3 +60,11 @@ python3 tests/browser_check.py
 检查脚本会自动启动临时静态服务器。优先使用 `/opt/google/chrome/chrome`，也可以设置 `CHROME_BIN`，否则使用 Playwright Chromium。通过软件 WebGL 检查实际场景、操作反馈、键盘弹窗、加载期间操作、12 种视口、3D 加载失败及禁用 JavaScript；截图输出到忽略跟踪的 `build/`。
 
 设计说明见 `docs/homepage-plan.md`。
+
+## 小小实验室
+
+儿童知识系列总览位于 `/kids/`，线上地址 <https://jamlabq.github.io/kids/>。独立的 `kids/index.html`、`kids/styles.css` 和 `kids/workbench.svg` 构成静态页面；家长说明使用原生 `details`，整个页面不依赖 JavaScript。
+
+目前收录《编码》给孩子，链接到既有独立站点的首页和第一章。增加专题时，在 `kids/index.html` 的探索区补充真实标题、问题路线、阅读方式与已核验的入口。未来方向与已开放专题分别呈现，不给尚未制作的课程添加可点击入口。
+
+主站通过 `.kids-card` 进入该系列。Pages 工作流同时发布 `kids/` 目录。学习原则与视觉提案见 `docs/designs/kids/proposal.md`；`tests/browser_check.py` 同时检查系列页和主站。

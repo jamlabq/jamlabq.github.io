@@ -33,7 +33,7 @@ jobs:
         run: |
           mkdir -p _site
           cp index.html styles.css app.mjs lab-scene.mjs .nojekyll _site/
-          cp -r assets vendor _site/
+          cp -r assets vendor kids _site/
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:

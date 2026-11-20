@@ -10,6 +10,7 @@ from urllib.parse import urlparse
 from playwright.sync_api import expect, sync_playwright
 
 ROOT = Path(__file__).resolve().parents[1]
+SITE_ROOT = Path(os.environ.get('SITE_ROOT', ROOT)).resolve()
 ARTIFACTS = ROOT / 'build'
 ARTIFACTS.mkdir(exist_ok=True)
 
@@ -19,7 +20,7 @@ class QuietHandler(SimpleHTTPRequestHandler):
         pass
 
 
-server = ThreadingHTTPServer(('127.0.0.1', 0), partial(QuietHandler, directory=str(ROOT)))
+server = ThreadingHTTPServer(('127.0.0.1', 0), partial(QuietHandler, directory=str(SITE_ROOT)))
 Thread(target=server.serve_forever, daemon=True).start()
 url = f'http://127.0.0.1:{server.server_port}/'
 
@@ -53,6 +54,7 @@ try:
         expect(page.locator('#scene-loading')).to_be_hidden()
         expect(page.locator('.learning-card:not(.data-card)')).to_have_attribute('href','https://jamlabq.github.io/LearnEverything/')
         expect(page.locator('.data-card')).to_have_attribute('href','https://jamlabq.github.io/data-lab/')
+        expect(page.locator('.kids-card')).to_have_attribute('href','kids/')
         expect(page.locator('.github-link')).to_have_attribute('href','https://github.com/jamlabq')
         for target in ['projects','about','laboratory']:
             assert page.locator('#'+target).count() == 1
@@ -139,6 +141,47 @@ try:
         fallback.close()
         print('PASS: failed 3D module keeps static scene, descriptions and links available')
 
+        # Follow the real entry from the main site into the children's collection.
+        page.locator('.kids-card').click()
+        expect(page).to_have_url(url + 'kids/')
+        expect(page.locator('h1')).to_contain_text('为什么会这样')
+        expect(page.locator('.course-copy .button')).to_have_attribute('href','https://jamlabq.github.io/code-for-kids/')
+        expect(page.locator('.hero-actions .button')).to_have_attribute('href','https://jamlabq.github.io/code-for-kids/ch1-flashlight.html')
+        expect(page.locator('.first-stop')).to_have_attribute('href','https://jamlabq.github.io/code-for-kids/ch1-flashlight.html')
+        assert page.locator('.workbench img').evaluate('(img)=>img.complete && img.naturalWidth>0')
+        for target in ['explore', 'how', 'grownups']:
+            page.locator(f'nav a[href="#{target}"]').click()
+            expect(page).to_have_url(url + 'kids/#' + target)
+            expect(page.locator('#' + target)).to_be_in_viewport()
+        for detail in page.locator('details').all():
+            summary = detail.locator('summary')
+            initially_open = detail.evaluate('(e)=>e.open')
+            summary.focus()
+            page.keyboard.press('Enter')
+            assert detail.evaluate('(e)=>e.open') != initially_open
+            page.keyboard.press('Space')
+            assert detail.evaluate('(e)=>e.open') == initially_open
+        for width, height in [(320,900),(390,844),(540,900),(768,1024),(844,390),(1024,900),(1440,1000)]:
+            page.set_viewport_size({'width':width,'height':height})
+            page.goto(url + 'kids/', wait_until='networkidle')
+            page.evaluate('document.fonts.ready')
+            assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), f'Kids overflow at {width}'
+            if width in [390,1440]:
+                page.screenshot(path=str(ARTIFACTS / f'kids-{width}.png'), full_page=True)
+        print('PASS: kids entry, series links, in-page navigation, keyboard details and 7 viewport layouts')
+
+        page.set_viewport_size({'width':390,'height':844})
+        page.goto(url + 'kids/', wait_until='networkidle')
+        # Enlarge every computed text size, including fixed-size labels, as a text-only zoom stress check.
+        page.evaluate('''() => {
+            const sizes = [...document.querySelectorAll('body,body *')].map(e=>[e,parseFloat(getComputedStyle(e).fontSize)]);
+            for (const [e,size] of sizes) e.style.fontSize = (size * 2) + 'px';
+        }''')
+        assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), 'Kids overflow with text at 200%'
+        expect(page.locator('.course-copy .button')).to_be_visible()
+        page.screenshot(path=str(ARTIFACTS / 'kids-text-200.png'), full_page=True)
+        print('PASS: kids page at 200% text size')
+
         nojs = browser.new_context(java_script_enabled=False, viewport={'width':390,'height':900})
         static = nojs.new_page()
         static.goto(url, wait_until='networkidle')
@@ -149,8 +192,16 @@ try:
         expect(static.locator('.data-card')).to_be_visible()
         assert static.locator('.scene-fallback').evaluate('(img)=>img.complete && img.naturalWidth>0')
         static.screenshot(path=str(ARTIFACTS / 'nojs.png'))
+        static.locator('.kids-card').click()
+        expect(static).to_have_url(url + 'kids/')
+        expect(static.locator('.course-copy .button')).to_be_visible()
+        detail = static.locator('details').nth(1)
+        detail.locator('summary').click()
+        expect(detail.locator('.detail-body')).to_be_visible()
+        static.locator('.back-link').click()
+        expect(static).to_have_url(url)
         nojs.close()
-        print('PASS: without JavaScript, static scene and project link remain usable')
+        print('PASS: without JavaScript, homepage, kids links, parent details and return navigation remain usable')
 
         assert not errors, errors
         assert not failures, failures
