@@ -42,6 +42,7 @@ python3 -m http.server 8770 --bind 0.0.0.0
 - `styles.css`：桌面/手机布局、颜色及静态显示。
 - `app.mjs`：控件、弹窗与场景加载降级。
 - `lab-scene.mjs`：用几何体创建的 Three.js 实验室、灯光与动画。
+- `assets/jamlab-logo.png`：用户提供的原版 jamlab 标识，页头、页尾共用；`assets/favicon.png` 为同图缩小的浏览器图标。
 - `assets/lab-day.webp`：实际 3D 场景的静态截图，支持无 WebGL 或无 JavaScript 的浏览器。
 - `vendor/three.module.min.js`：本地固定版本 Three.js **0.169.0**，MIT 许可证见 `vendor/THREE-LICENSE.txt`。
 

@@ -25,9 +25,8 @@ img, svg { display: block; max-width: 100%; }
 .skip-link { position: fixed; left: 20px; top: 10px; z-index: 10; padding: 15px 22px; color: white; background: var(--green); transform: translateY(-180%); }
 .skip-link:focus { transform: none; }
 .site-header { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; min-height: 102px; padding-block: 18px; border-bottom: 1px solid var(--line); }
-.brand { display: inline-flex; align-items: center; min-height: 48px; font-size: 32px; font-weight: 800; letter-spacing: -1.9px; }
-.brand span { font-weight: 400; }
-.brand i { font-style: normal; color: var(--orange); }
+.brand { display: inline-flex; align-items: center; flex-shrink: 0; min-width: 48px; min-height: 48px; }
+.brand-logo { display: block; width: 64px; height: 64px; object-fit: contain; }
 .series-name { display: flex; align-items: center; min-height: 48px; padding-left: 24px; border-left: 1px solid var(--line); font-size: 20px; font-weight: 600; color: var(--green); }
 .site-header nav { margin-left: auto; display: flex; flex-wrap: wrap; gap: 24px; }
 .site-header nav a, .back-link { display: inline-flex; align-items: center; min-height: 48px; font-size: 15px; color: var(--muted); }
@@ -121,7 +120,7 @@ summary:hover { color: var(--green); }
 .conversation-card > p > span { color: #728766; margin-right: 12px; }
 .conversation-card > span { display: block; color: var(--muted); font-size: 15px; line-height: 1.8; margin-top: 12px; }
 .site-footer { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; border-top: 1px solid var(--line); padding: 24px 0 32px; }
-.site-footer .brand { font-size: 25px; }
+.site-footer .brand-logo { width: 48px; height: 48px; }
 .site-footer p { font-size: 15px; line-height: 1.8; color: var(--muted); margin-left: 14px; }
 .site-footer > a:last-child { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; font-size: 15px; color: var(--muted); margin-left: auto; }
 @media (max-width: 1100px) {
@@ -186,7 +185,7 @@ summary:hover { color: var(--green); }
 @media (max-width: 540px) {
   .page-width { width: calc(100% - 40px); }
   .site-header { gap: 10px 12px; }
-  .brand { font-size: 28px; }
+  .brand-logo { width: 56px; height: 56px; }
   .series-name { font-size: 16px; padding-left: 13px; }
   .back-link { font-size: 12px; gap: 4px; }
   .back-link span { font-size: 18px; }
@@ -256,7 +255,6 @@ summary:hover { color: var(--green); }
 @media (max-width: 360px) {
   .page-width { width: calc(100% - 32px); }
   .site-header { gap: 6px 9px; }
-  .brand { font-size: 25px; }
   .series-name { padding-left: 10px; font-size: 15px; }
   .back-link { font-size: 11px; }
   .course-card { padding: 19px 16px; }
