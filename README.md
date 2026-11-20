@@ -1,6 +1,6 @@
 # jamlab — 把好奇心，折腾成真。
 
-jamlab 首页的首版可交互原型。奶油白的实验室里有机械臂、示波器、探测小车，角落里有一台厚重的未来核心机。包含 LearnEverything 入口、后续项目位置和实验室介绍。
+jamlab 首页的首版可交互原型。奶油白的实验室里有机械臂、示波器、探测小车，角落里有一台厚重的未来核心机。包含并列的 LearnEverything 与 Data Lab 入口、后续项目位置和实验室介绍。
 
 ## 本地预览
 
@@ -31,10 +31,10 @@ python3 -m http.server 8770 --bind 0.0.0.0
    ```
 
    本机沿用 LearnEverything 的 SSH 连接别名 `github-jamlabq`。其他电脑可将远程地址换成 `git@github.com:jamlabq/jamlabq.github.io.git`。
-3. 打开仓库 **Settings → Pages**，Source 选 **Deploy from a branch**，Branch 选 **main**、目录选 **/ (root)**，保存。
+3. 打开仓库 **Settings → Pages**，Source 选 **GitHub Actions**。工作流 **Publish jamlab** 会检查并发布首页。
 4. 等待 Pages 部署完成，访问 <https://jamlabq.github.io/>。
 
-`.nojekyll` 让 Pages 直接发布静态文件。后续修改后执行 `git add`、`git commit`、`git push`，Pages 会自动更新。
+工作流仅发布 HTML、CSS、JavaScript、素材和第三方许可证。`.nojekyll` 保留静态发布兼容性。后续修改后执行 `git add`、`git commit`、`git push`，Pages 会自动更新。
 
 ## 页面与依赖
 
@@ -45,7 +45,7 @@ python3 -m http.server 8770 --bind 0.0.0.0
 - `assets/lab-day.webp`：实际 3D 场景的静态截图，支持无 WebGL 或无 JavaScript 的浏览器。
 - `vendor/three.module.min.js`：本地固定版本 Three.js **0.169.0**，MIT 许可证见 `vendor/THREE-LICENSE.txt`。
 
-无需构建步骤、包管理器或运行时 CDN 请求。场景离开视口、页面隐藏或动画暂停时停止渲染。LearnEverything 入口为 <https://jamlabq.github.io/LearnEverything/>。
+无需构建步骤、包管理器或运行时 CDN 请求。场景离开视口、页面隐藏或动画暂停时停止渲染。项目入口分别为 <https://jamlabq.github.io/LearnEverything/> 和 <https://jamlabq.github.io/data-lab/>。
 
 ## 检查
 

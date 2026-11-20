@@ -51,7 +51,8 @@ try:
         expect(page.locator('body')).to_have_attribute('data-scene','ready')
         expect(page.locator('#motion-toggle')).to_have_attribute('aria-pressed','true')
         expect(page.locator('#scene-loading')).to_be_hidden()
-        expect(page.locator('.learning-card')).to_have_attribute('href','https://jamlabq.github.io/LearnEverything/')
+        expect(page.locator('.learning-card:not(.data-card)')).to_have_attribute('href','https://jamlabq.github.io/LearnEverything/')
+        expect(page.locator('.data-card')).to_have_attribute('href','https://jamlabq.github.io/data-lab/')
         expect(page.locator('.github-link')).to_have_attribute('href','https://github.com/jamlabq')
         for target in ['projects','about','laboratory']:
             assert page.locator('#'+target).count() == 1
@@ -144,7 +145,8 @@ try:
         expect(static.locator('#scene-loading')).to_be_hidden()
         expect(static.locator('#scene-hotspots')).to_be_hidden()
         expect(static.locator('#core-trigger')).to_be_hidden()
-        expect(static.locator('.learning-card')).to_be_visible()
+        expect(static.locator('.learning-card:not(.data-card)')).to_be_visible()
+        expect(static.locator('.data-card')).to_be_visible()
         assert static.locator('.scene-fallback').evaluate('(img)=>img.complete && img.naturalWidth>0')
         static.screenshot(path=str(ARTIFACTS / 'nojs.png'))
         nojs.close()

@@ -14,3 +14,19 @@
 /* Static-first: links and the laboratory remain available without JavaScript. */
 body:not([data-interactive]) .scene-hotspots,body:not([data-interactive]) .scene-controls .control-group,body:not([data-interactive]) .core-trigger,body:not([data-interactive]) .hero-footnote{display:none}
 body[data-scene="fallback"] #core-trigger{display:none}
+
+/* The two open projects share the workbench; the next idea keeps a smaller slot. */
+.project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.data-card{background:#e6ece4}
+.data-art svg{width:220px;height:245px;transition:transform .3s}
+.data-card:hover .data-art svg{transform:rotate(-3deg) translateY(-4px)}
+.data-card .project-enter>span{color:#496b59}
+.future-note{display:flex;align-items:center;gap:22px;padding:24px 28px;margin-top:22px;border:1px dashed #cbd2c0;border-radius:9px}
+.future-note-plus{font-size:38px;font-weight:300;color:#91a07e}
+.future-note h3{font-size:15px;font-weight:500;line-height:1.7}
+.future-note p{font-size:11px;line-height:1.9;color:#656c5d;margin-top:5px}
+.future-note .in-progress{margin:0 0 0 auto;padding:0;white-space:nowrap;color:#68715d}
+@media(max-width:1150px){.learning-content{gap:15px}.learning-copy h3{font-size:23px}}
+@media(max-width:850px){.learning-content{grid-template-columns:1fr}.learning-art{justify-self:center}.future-note{padding:20px;gap:15px}}
+@media(max-width:540px){.project-grid{grid-template-columns:1fr}.learning-content{grid-template-columns:140px 1fr;gap:8px}.learning-copy h3{font-size:21px}.future-note{align-items:flex-start;flex-wrap:wrap;padding:20px;gap:12px}.future-note-plus{font-size:28px}.future-note>div{flex:1;min-width:0}.future-note h3{font-size:14px}.future-note .in-progress{margin-left:40px}.data-art svg{margin-top:10px}}
+@media(max-width:365px){.learning-content{grid-template-columns:105px 1fr;gap:5px}.learning-copy h3{font-size:20px}}

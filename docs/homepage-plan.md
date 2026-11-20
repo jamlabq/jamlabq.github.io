@@ -21,3 +21,5 @@ Implementation:
 5. Verify all interactions, reduced motion, WebGL failure fallback, no horizontal overflow and static hosting. Start local preview.
 
 Hosting: public API returned 404 for jamlabq/jamlabq.github.io and root domain. Prepare this separate directory for the GitHub user-site repository; do not replace LearnEverything or publish yet.
+
+Follow-up approved by user: publish the homepage and add Data Lab as a peer of LearnEverything. Use two equal project cards and a compact future-project slot; describe Data Lab using its verified HN collections. Publish runtime files through the Publish jamlab GitHub Actions workflow.
