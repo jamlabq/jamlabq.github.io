@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f3ed">
+  <meta name="description" content="jamlab，一间把好奇心折腾成真的独立实验室。探索小发明、硬核技术与开放的学习计划。">
+  <title>jamlab — 把好奇心，折腾成真。</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a class="wordmark" href="./" aria-label="jamlab 首页"><svg class="brand-symbol" viewBox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 3v34M3 20h34M8 8l24 24M8 32 32 8" stroke="currentColor" stroke-width="5"/><circle cx="20" cy="20" r="7" fill="var(--paper)" stroke="currentColor" stroke-width="4"/></svg><span>jam<span class="wordmark-light">lab</span><i>.</i></span></a>
+    <nav aria-label="主导航"><a class="nav-current" href="#laboratory">实验室<span>01</span></a><a href="#projects">在折腾什么<span>02</span></a><a href="#about">关于 jamlab<span>03</span></a></nav>
+    <a class="github-link" href="https://github.com/jamlabq" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+  </header>
+  <main id="main">
+    <section class="hero" id="laboratory" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span class="status-dot"></span> INDEPENDENT LAB. ENDLESS CURIOSITY.</div>
+        <h1 id="hero-title">把好奇心，<br><span class="title-last">折腾成<span class="orange">真<span class="title-period">。</span></span><svg class="title-scribble" viewBox="0 0 270 14" fill="none" aria-hidden="true"><path d="M3 7c72-8 163-6 263 0M52 11c68-5 117-4 170-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span></h1>
+        <p class="hero-description">欢迎来到 jamlab。<br>这里装着一些奇怪的点子、好玩的小东西，<br>和一颗认真探索底层的心。</p>
+        <a class="button button-dark" href="#projects">看看我们在折腾什么 <span aria-hidden="true">↗</span></a>
+        <div class="hero-footnote"><svg viewBox="0 0 30 30" fill="none" aria-hidden="true"><path d="M9 8c-8 8 2 18 13 10M17 12l7 5-3 8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span>也可以先摸摸实验室的小玩意儿</span></div>
+      </div>
+      <div class="laboratory-wrap">
+        <div class="scene-topline"><span><i></i> JAMLAB / ROOM 001</span><span id="scene-mode-label">DAY SHIFT</span></div>
+        <div class="scene" id="lab-scene" role="img" aria-label="立体实验室：工作台上有橙色机器人和示波器，地面上有探测小车，右后角是一台带绿色发光核心的深色重型机器。">
+          <img class="scene-fallback" src="assets/lab-day.webp" alt="" width="957" height="700">
+          <div class="scene-loading" id="scene-loading" hidden><span class="loading-ring"></span><span>正在打开实验室的灯…</span></div>
+        </div>
+        <div class="scene-hotspots" id="scene-hotspots" aria-label="探索实验室的装置">
+          <button class="hotspot" data-object="robot" style="left:27%;top:53%"><span class="hotspot-point">+</span><span class="hotspot-label">小小机械臂</span></button>
+          <button class="hotspot" data-object="signal" style="left:38%;top:45%"><span class="hotspot-point">+</span><span class="hotspot-label">捕捉一个信号</span></button>
+          <button class="hotspot hotspot-core" data-object="core" style="left:76%;top:35%"><span class="hotspot-point">+</span><span class="hotspot-label">那个大家伙 <span aria-hidden="true">↗</span></span></button>
+          <button class="hotspot" data-object="rover" style="left:53%;top:76%"><span class="hotspot-point">+</span><span class="hotspot-label">小车出去转转</span></button>
+        </div>
+        <div class="scene-controls"><span class="scene-hint"><span class="scene-hint-icon" aria-hidden="true">⌁</span> 一间实验室，很多种可能</span><div class="control-group"><button id="motion-toggle" class="scene-control" aria-label="暂停场景动画" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true" fill="none"><path d="M7 5v10M13 5v10" stroke="currentColor" stroke-width="2"/></svg><span>暂停</span></button><span class="control-divider"></span><button id="night-toggle" class="scene-control" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true" fill="none"><path d="M15 12a6 6 0 0 1-7-8 6.5 6.5 0 1 0 7 8Z" stroke="currentColor" stroke-width="1.4"/></svg><span>关灯看看</span></button></div></div>
+      </div>
+    </section>
+    <section class="core-strip" aria-label="实验室核心装置">
+      <div class="core-serial"><span class="core-icon" aria-hidden="true">▥</span><span>THE QUIET CORNER<br><b>CORE / 001</b></span></div>
+      <div class="core-copy"><h2>角落里那个大家伙，有点不一样。</h2><p>看起来笨重，内里却装着对未来的想象。它是这间实验室的心脏。</p></div>
+      <button class="core-trigger" id="core-trigger" aria-pressed="false"><span class="power-icon" aria-hidden="true">⏻</span><span id="core-trigger-text">启动核心</span><span aria-hidden="true">↗</span></button>
+      <div class="core-response" id="core-response" role="status" aria-live="polite"></div>
+    </section>
+    <section class="projects section" id="projects" aria-labelledby="projects-title">
+      <div class="section-heading"><div><div class="eyebrow muted">02 / ON THE WORKBENCH</div><h2 id="projects-title">正在工作台上的<span class="serif">，</span></h2></div><p>从一个「要不试试」，<br>到一个真的能用的东西。</p></div>
+      <div class="project-grid">
+        <a class="project-card learning-card" href="https://jamlabq.github.io/LearnEverything/">
+          <div class="project-card-top"><span class="project-label">OPEN NOTEBOOK / 001</span><span class="live-badge"><i></i> 已开放</span></div>
+          <div class="learning-content"><div class="learning-art" aria-hidden="true"><div class="book book-back"><span>WHY?</span></div><div class="book book-middle"><span>HOW.</span></div><div class="book book-front"><span class="book-mini">JAMLAB FIELD NOTES</span><strong>Learn<br>Every<br>thing<span>↗</span></strong><span class="book-line"></span><span class="book-bottom">STAY A BEGINNER.</span></div><div class="book-spark">✳</div></div><div class="learning-copy"><h3>LearnEverything<span>一直学，一直拆开看。</span></h3><p>把复杂的东西，一点点弄明白。<br>学习路线、动手实验和可反复翻阅的笔记，<br>都放在这本不断生长的手册里。</p><div class="topic-tags"><span>英语</span><span>FPGA</span><span>持续生长中</span></div><span class="project-enter">翻开学习手册 <span aria-hidden="true">↗</span></span></div></div>
+        </a>
+        <article class="project-card future-card"><div class="project-card-top"><span class="project-label">UNFINISHED BUSINESS</span><span class="pencil-symbol" aria-hidden="true">✎</span></div><div class="future-art" aria-hidden="true"><span class="dashed-orbit"></span><span class="future-plus">+</span><span class="orbit-dot"></span></div><h3>给下一个奇怪的点子，<br>留张工作台。</h3><p>也许是个小工具，也许是次大折腾。<br>新的东西，正在路上。</p><span class="in-progress"><span class="small-orange-dot"></span> 继续保持好奇</span></article>
+      </div>
+    </section>
+    <section class="about section" id="about" aria-labelledby="about-title"><div class="about-intro"><div class="eyebrow muted">03 / THE SPIRIT OF JAMLAB</div><h2 id="about-title">允许异想天开。<br>也要<span>追根究底。</span></h2><div class="about-signature">a little play. a lot of why.<svg viewBox="0 0 100 40" fill="none" aria-hidden="true"><path d="M4 14c26 30 57 10 70 5m-11-8 14 6-6 14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></div></div><div class="about-notes"><p class="about-lead">jamlab 是一间由好奇心驱动的独立实验室。</p><p>我们喜欢把东西拆开，看看它为什么会工作；也喜欢把不相干的想法放在一起，看看会发生什么。</p><p>好玩是起点。理解原理、亲手实现，再把探索留下来，是这里做事的方式。桌上可以有玩具，角落里也可以藏着未来。</p><div class="lab-values"><span><b>01</b> 保持好奇</span><span><b>02</b> 亲手折腾</span><span><b>03</b> 认真到底</span></div></div></section>
+    <div class="closing-note"><span class="closing-star" aria-hidden="true">✳</span><p>实验还在继续。<span>欢迎随时来看看。</span></p><a href="https://github.com/jamlabq" target="_blank" rel="noopener noreferrer">在 GitHub 找到 jamlab <span aria-hidden="true">↗</span></a></div>
+  </main>
+  <footer class="site-footer"><a class="wordmark footer-wordmark" href="./"><span>jam<span class="wordmark-light">lab</span><i>.</i></span></a><span>Built with curiosity. And a few loose screws.</span><a href="#laboratory">回到实验室 ↑</a></footer>
+  <dialog class="object-dialog" id="object-dialog" aria-labelledby="object-title"><div class="dialog-top"><span id="object-code"></span><button id="dialog-close" aria-label="关闭装置介绍">×</button></div><div class="dialog-object-icon" id="object-icon" aria-hidden="true"></div><h2 id="object-title"></h2><p class="object-subtitle" id="object-subtitle"></p><p class="object-description" id="object-description"></p><div class="object-note" id="object-note"></div><button class="button button-dark" id="object-action">让它动一下 <span aria-hidden="true">↗</span></button><p class="concept-label">ROOM 001 · 实验室的概念装置</p></dialog>
+  <noscript><div class="noscript-note">你正在查看实验室的静态版本。LearnEverything 和下方链接可以直接使用；开启 JavaScript 可探索装置。</div></noscript>
+</body>
+</html>
