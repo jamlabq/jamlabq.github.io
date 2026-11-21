@@ -145,9 +145,11 @@ try:
         page.locator('.kids-card').click()
         expect(page).to_have_url(url + 'kids/')
         expect(page.locator('h1')).to_contain_text('为什么会这样')
-        expect(page.locator('.course-copy .button')).to_have_attribute('href','https://jamlabq.github.io/code-for-kids/')
+        expect(page.locator('#code-course .button')).to_have_attribute('href','https://jamlabq.github.io/code-for-kids/')
+        expect(page.locator('#math-course .button')).to_have_attribute('href','https://jamlabq.github.io/math-for-kids/')
         expect(page.locator('.hero-actions .button')).to_have_attribute('href','https://jamlabq.github.io/code-for-kids/ch1-flashlight.html')
-        expect(page.locator('.first-stop')).to_have_attribute('href','https://jamlabq.github.io/code-for-kids/ch1-flashlight.html')
+        expect(page.locator('#code-course .first-stop')).to_have_attribute('href','https://jamlabq.github.io/code-for-kids/ch1-flashlight.html')
+        expect(page.locator('#math-course .first-stop')).to_have_attribute('href','https://jamlabq.github.io/math-for-kids/page-01.html')
         assert page.locator('.workbench img').evaluate('(img)=>img.complete && img.naturalWidth>0')
         for target in ['explore', 'how', 'grownups']:
             page.locator(f'nav a[href="#{target}"]').click()
@@ -178,7 +180,8 @@ try:
             for (const [e,size] of sizes) e.style.fontSize = (size * 2) + 'px';
         }''')
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth'), 'Kids overflow with text at 200%'
-        expect(page.locator('.course-copy .button')).to_be_visible()
+        for link in page.locator('.course-copy .button').all():
+            expect(link).to_be_visible()
         page.screenshot(path=str(ARTIFACTS / 'kids-text-200.png'), full_page=True)
         print('PASS: kids page at 200% text size')
 
@@ -194,7 +197,8 @@ try:
         static.screenshot(path=str(ARTIFACTS / 'nojs.png'))
         static.locator('.kids-card').click()
         expect(static).to_have_url(url + 'kids/')
-        expect(static.locator('.course-copy .button')).to_be_visible()
+        for link in static.locator('.course-copy .button').all():
+            expect(link).to_be_visible()
         detail = static.locator('details').nth(1)
         detail.locator('summary').click()
         expect(detail.locator('.detail-body')).to_be_visible()

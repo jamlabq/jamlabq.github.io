@@ -66,6 +66,6 @@ python3 tests/browser_check.py
 
 儿童知识系列总览位于 `/kids/`，线上地址 <https://jamlabq.github.io/kids/>。独立的 `kids/index.html`、`kids/styles.css` 和 `kids/workbench.svg` 构成静态页面；家长说明使用原生 `details`，整个页面不依赖 JavaScript。
 
-目前收录《编码》给孩子，链接到既有独立站点的首页和第一章。增加专题时，在 `kids/index.html` 的探索区补充真实标题、问题路线、阅读方式与已核验的入口。未来方向与已开放专题分别呈现，不给尚未制作的课程添加可点击入口。
+目前收录《编码》给孩子（25 章）与“数学为什么长这样”（7 个主题、49 页），分别链接到既有独立站点的目录和第一课。增加专题时，在 `kids/index.html` 的探索区补充真实标题、问题路线、阅读方式与已核验的入口。未来方向与已开放专题分别呈现，不给尚未制作的课程添加可点击入口。
 
 主站通过 `.kids-card` 进入该系列。Pages 工作流同时发布 `kids/` 目录。学习原则与视觉提案见 `docs/designs/kids/proposal.md`；`tests/browser_check.py` 同时检查系列页和主站。
